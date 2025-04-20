@@ -28,3 +28,11 @@ for n_value in n:
     final_result += iter_i
 
 Pr = final_result/len(n)
+print(Pr)
+
+plt.title("Received Power vs Horizontal Distance")
+plt.xlabel("Horizontal Distance (m)")
+plt.ylabel("Received Power (Watts)")
+plt.plot(dh, Pr, 'r--', label='Received Power')
+plt.legend()
+plt.show()
