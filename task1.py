@@ -15,3 +15,16 @@ c = x + 1j*y
 g = np.sqrt(alpha) * np.abs(c)
 g = np.abs(g)**2 # g is the rayleigh fading channel gain
 d = np.sqrt(dh**2 + dv**2)
+
+final_result = np.zeros(len(dh))  # Initially, result is 0
+
+for n_value in n:
+    result = []
+    for d_value in d:
+        temp = (d_value**(-n_value)) * g
+        avg_temp = np.mean(temp)
+        result.append(avg_temp)
+    iter_i = pt * np.array(result)
+    final_result += iter_i
+
+Pr = final_result/len(n)
