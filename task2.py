@@ -57,3 +57,20 @@ rate_t = 1 # Threshold rate in bps/Hz
 for i in range(num_users):
     pr[i] = pt * path_loss[i] * h[i]
 print(f"Received power for each user: ", pr)
+
+# Initialize outage count for each user
+outage_count = np.zeros(num_users)
+outage_prob = np.zeros(num_users)
+
+# Part 5 - Calculate SNR and rate
+for i in range(num_users):
+    snr[i] = pr[i] / N
+    rate[i] = np.log2(1 + snr[i])
+    # Update outage count if rate is below threshold
+    
+    # Part 7 - Outage Probability Calculation
+    if rate[i] < rate_t:
+        outage_count[i] += 1  # Increment outage count for the user
+
+print(f"SNR for each user: ", snr)
+print(f"Rate for each user: ", rate)
