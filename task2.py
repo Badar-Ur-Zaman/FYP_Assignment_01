@@ -22,3 +22,17 @@ plt.ylabel("Y coordinate (m)")
 plt.legend()
 plt.grid()
 plt.show()
+
+# Part 02 - Distance between Users and Base Station
+distance = np.zeros(num_users)
+path_loss = np.zeros(num_users)
+varience = 0.5  
+n = 3.5  # Path loss exponent 
+
+ # Calculate distances and path loss
+for d in range(num_users):
+    distance[d] = np.sqrt((x_users[d] - x_bs) ** 2 + (y_users[d] - y_bs) ** 2)
+    # Part 3 - Path Loss Calculation
+    path_loss[d] = 1 / distance[d] ** n
+print(f"Distance from BS to each user: ", distance)
+print(f"Path loss for each user when path loss exponent is 3.5 : ", path_loss)
