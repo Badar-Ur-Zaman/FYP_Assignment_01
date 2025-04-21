@@ -36,3 +36,24 @@ for d in range(num_users):
     path_loss[d] = 1 / distance[d] ** n
 print(f"Distance from BS to each user: ", distance)
 print(f"Path loss for each user when path loss exponent is 3.5 : ", path_loss)
+
+# Part 4 - Calculating Recieved Power
+# Calculate Rayleigh fading channel
+x = np.sqrt(varience) * np.random.randn(num_users)
+y = np.sqrt(varience) * np.random.randn(num_users)
+g = x + 1j * y
+h = np.abs(g) ** 2
+print(f"Rayleigh fading channel gain for each user: ", h)
+
+pr = np.zeros(num_users)
+pt = 1 # Watts
+snr = np.zeros(num_users)
+rate = np.zeros(num_users)
+N = -96 # Noise power in dBm
+N = 10 ** ((N-30)/ 10) # Convert dBm to Watts
+rate_t = 1 # Threshold rate in bps/Hz
+
+# Calculate received power
+for i in range(num_users):
+    pr[i] = pt * path_loss[i] * h[i]
+print(f"Received power for each user: ", pr)
